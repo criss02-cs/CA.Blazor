@@ -1,7 +1,7 @@
-﻿<div class="cointainer">
+﻿<div style="height: @Height; width: @Width">
     @if (!string.IsNullOrEmpty(Base64Data))
     {
-        <iframe src="data:application/pdf;base64,@Base64Data" height="@Height" width="@Width">
+        <iframe src="data:application/pdf;base64,@Base64Data" height="100%" width="100%">
         </iframe>
     }
     else
