@@ -1,0 +1,33 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
+
+	<PropertyGroup>
+		<TargetFramework>net6.0</TargetFramework>
+		<Nullable>enable</Nullable>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+		<PackageReadmeFile>readme.md</PackageReadmeFile>
+		<Description>A small library that allows blazor projects to show pdf file on web page</Description>
+		<Authors>Cristiano Aloigi</Authors>
+		<GenerateDocumentationFile>True</GenerateDocumentationFile>
+		<Title>CA.Blazor.PdfViewer</Title>
+		<RepositoryUrl>https://github.com/criss02-cs/CA.Blazor/tree/master/CA.Blazor.Pdf</RepositoryUrl>
+		<AssemblyVersion>1.0.0.1</AssemblyVersion>
+		<FileVersion>1.0.0.1</FileVersion>
+		<Version>1.0.1</Version>
+	</PropertyGroup>
+
+
+	<ItemGroup>
+		<None Include="docs\readme.md" Pack="true" PackagePath="\" />
+		<SupportedPlatform Include="browser" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="6.0.14" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Folder Include="Helpers\" />
+	</ItemGroup>
+
+</Project>

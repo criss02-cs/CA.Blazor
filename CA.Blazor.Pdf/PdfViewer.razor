@@ -1,0 +1,11 @@
+﻿<div class="cointainer">
+    @if (!string.IsNullOrEmpty(Base64Data))
+    {
+        <iframe src="data:application/pdf;base64,@Base64Data" height="@Height" width="@Width">
+        </iframe>
+    }
+    else
+    {
+        <div>Nessun file selezionato</div>
+    }
+</div>
