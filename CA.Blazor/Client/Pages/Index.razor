@@ -7,3 +7,22 @@
 Welcome to your new app.
 
 <SurveyPrompt Title="How is Blazor working for you?" />
+
+<InputFile OnChange="OnInputFileChange" />
+
+<PdfViewer Base64Data="@Base64" Height="150" Width="500"/>
+
+@code {
+    public string Base64 { get; set; }
+    IBrowserFile selectedFiles;
+
+    private async void OnInputFileChange(InputFileChangeEventArgs e)
+    {
+        selectedFiles = e.File;
+        var memory = await selectedFiles.OpenReadStream().ToMemoryStreamAsync();
+        Base64 = memory.ToBase64String();
+        this.StateHasChanged();
+    }
+
+
+}
