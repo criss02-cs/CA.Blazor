@@ -13,7 +13,8 @@
 		<RepositoryUrl>https://github.com/criss02-cs/CA.Blazor/tree/master/CA.Blazor.Pdf</RepositoryUrl>
 		<AssemblyVersion>1.0.0.1</AssemblyVersion>
 		<FileVersion>1.0.0.1</FileVersion>
-		<Version>1.0.1</Version>
+		<Version>1.0.2</Version>
+		<PackageReleaseNotes>Modificata la gestione delle dimensioni del componente</PackageReleaseNotes>
 	</PropertyGroup>
 
 
@@ -24,10 +25,6 @@
 
 	<ItemGroup>
 		<PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="6.0.14" />
-	</ItemGroup>
-
-	<ItemGroup>
-		<Folder Include="Helpers\" />
 	</ItemGroup>
 
 </Project>

@@ -1,11 +1,18 @@
 ﻿<div style="height: @Height; width: @Width">
-    @if (!string.IsNullOrEmpty(Base64Data))
+    @if (!string.IsNullOrEmpty(Base64Data) && string.IsNullOrEmpty(Errors))
     {
         <iframe src="data:application/pdf;base64,@Base64Data" height="100%" width="100%">
         </iframe>
     }
     else
     {
-        <div>Nessun file selezionato</div>
+        @if (string.IsNullOrEmpty(Errors))
+        {
+            <div>Nessun file selezionato</div>
+        }
+        else
+        {
+            @Errors
+        }
     }
 </div>
