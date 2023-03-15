@@ -18,6 +18,8 @@ public static class StreamExtensions
 
         stream.ReadAsync(bytes, 0, (int)stream.Length);
 
+        stream.DisposeAsync();
+
         return Convert.ToBase64String(bytes);
     }
 

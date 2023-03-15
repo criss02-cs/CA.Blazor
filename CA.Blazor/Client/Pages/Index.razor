@@ -19,7 +19,7 @@ Welcome to your new app.
     private async void OnInputFileChange(InputFileChangeEventArgs e)
     {
         selectedFiles = e.File;
-        var memory = await selectedFiles.OpenReadStream().ToMemoryStreamAsync();
+        using var memory = await selectedFiles.OpenReadStream(2000000000).ToMemoryStreamAsync();
         Base64 = memory.ToBase64String();
         this.StateHasChanged();
     }
