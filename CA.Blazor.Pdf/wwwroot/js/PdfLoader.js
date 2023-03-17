@@ -1,4 +1,4 @@
-﻿export async function renderPage(base64Content, pageNumber, canvas) {
+﻿export async function renderPage(base64Content, pageNumber, canvas, scale) {
     var bytes = atob(base64Content);
     var arr = new Uint8Array(bytes.length);
     for (var i = 0; i < bytes.length; i++) {
@@ -9,7 +9,7 @@
 
     //Carica la pagina del pdf e renderizzala nel canvas
     var pdfPage = await pdfDoc.getPage(pageNumber);
-    var viewport = pdfPage.getViewport({ scale: 1.0 });
+    var viewport = pdfPage.getViewport({ scale: scale });
     setCanvasSize(canvas, viewport.width, viewport.height);
     var canvasContext = canvas.getContext('2d');
     await pdfPage.render({
@@ -36,10 +36,11 @@ export function base64ToArray(base64Content) {
     return arr;
 }
 
-export function numPages(base64Content) {
+export async function numPages(base64Content) {
     var arr = base64ToArray(base64Content);
     var pdfJsLib = window['pdfjs-dist/build/pdf'];
     var pdfDoc = await pdfJsLib.getDocument({ data: arr }).promise;
+    console.log(pdfDoc.numPages);
     return pdfDoc.numPages;
 }
 

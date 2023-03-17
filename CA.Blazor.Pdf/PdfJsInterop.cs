@@ -26,10 +26,10 @@ namespace CA.Blazor.Pdf
             await module.InvokeVoidAsync("setCanvasSize", canvas, width, height);
         }
 
-        public async ValueTask RenderPage(string base64Content, int pageNumber, IJSObjectReference canvas)
+        public async ValueTask RenderPage(string base64Content, int pageNumber, IJSObjectReference canvas, double scale)
         {
             var module = await moduleTask.Value;
-            await module.InvokeVoidAsync("renderPage", base64Content, pageNumber, canvas);
+            await module.InvokeVoidAsync("renderPage", base64Content, pageNumber, canvas, scale);
         }
 
         public async ValueTask<IJSObjectReference> GetElementById(string id)

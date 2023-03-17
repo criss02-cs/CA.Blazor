@@ -1,6 +1,7 @@
 using CA.Blazor.Pdf.Extensions;
 using CA.Blazor.Pdf.Helpers;
 using Microsoft.AspNetCore.Components;
+using Microsoft.JSInterop;
 
 namespace CA.Blazor.Pdf
 {
@@ -13,7 +14,7 @@ namespace CA.Blazor.Pdf
         [Parameter]
         public string? Height { get; set; } // 200px o 20%
 
-
+        private int ActualPage { get; set; } = 0;
         private int Pages { get; set; } = 0; // metto a 0 perché può capitare il file sbagliato 
 
         [Inject]
@@ -41,14 +42,26 @@ namespace CA.Blazor.Pdf
                         throw new InvalidOperationException("Il file selezionato non è un pdf");
                     }
                     Pages = await PdfJsInterop.GetNumPages(Base64Data);
+                    if(Pages > 0)
+                    {
+                        ActualPage = 1;
+                    }
                     var canvas = await PdfJsInterop.GetElementById("pdf-canvas");
-                    await PdfJsInterop.SetCanvas(canvas, 800, 600);
-                    await PdfJsInterop.RenderPage(Base64Data, 1, canvas);
+                    await RenderPage(ActualPage, canvas, 0.8);
                 }
             }
             catch (InvalidOperationException ex)
             {
                 Errors = ex.Message;
+            }
+        }
+
+        private async Task RenderPage(int page, IJSObjectReference canvas, double scale = 1.0)
+        {
+            if(!string.IsNullOrEmpty(Base64Data))
+            {
+                await PdfJsInterop.SetCanvas(canvas, 800, 600);
+                await PdfJsInterop.RenderPage(Base64Data, page, canvas, scale);
             }
         }
     }

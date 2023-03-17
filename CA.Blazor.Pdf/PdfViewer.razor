@@ -1,10 +1,15 @@
-﻿<div style="height: @Height; width: @Width">
+﻿<div style="width: @Width;">
     @if (!string.IsNullOrEmpty(Base64Data) && string.IsNullOrEmpty(Errors))
     {
-        @*<iframe src="data:application/pdf;base64,@Base64Data" height="100%" width="100%">
-        </iframe>*@
-            @*<canvas id="the-canvas"></canvas>*@
-                <canvas id="pdf-canvas"></canvas>
+        @*<div>@Pages</div>*@
+            <canvas id="pdf-canvas" style="margin: auto; padding: 0;
+    margin: auto;
+    display: block;
+border: 1px black solid"></canvas>
+        @if(Pages > 1)
+        {
+            <p style="text-align: center;">@ActualPage / @Pages</p>
+        }
     }
     else
     {
