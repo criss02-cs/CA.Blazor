@@ -64,5 +64,15 @@ namespace CA.Blazor.Pdf
                 await PdfJsInterop.RenderPage(Base64Data, page, canvas, scale);
             }
         }
+
+        private async Task ChangePage(int page)
+        {
+            if(page > 0 && page <= Pages)
+            {
+                var canvas = await PdfJsInterop.GetElementById("pdf-canvas");
+                ActualPage = page;
+                await RenderPage(page, canvas, 0.8);
+            }
+        }
     }
 }

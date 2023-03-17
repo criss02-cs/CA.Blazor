@@ -1,0 +1,44 @@
+﻿#pdf-canvas {
+    margin: auto;
+    padding: 0;
+    margin: auto;
+    display: block;
+    border: 1px black solid;
+}
+
+.arrow {
+    border: solid black;
+    border-width: 0 6px 6px 0;
+    display: inline-block;
+    padding: 6px;
+    margin: auto;
+    /*transition: transform 0.2s, color 0.2s;*/
+}
+    .arrow:hover {
+        border: solid gray;
+        border-width: 0 6px 6px 0;
+    }
+
+.right {
+    transform: rotate(-45deg);
+    -webkit-transform: rotate(-45deg);
+}
+
+.left {
+    transform: rotate(135deg);
+    -webkit-transform: rotate(135deg);
+}
+
+.pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+    .pagination p {
+        width: auto; /* impostare la larghezza fissa del tag p */
+        text-align: center; /* centra il numero di pagina all'interno del tag p */
+        margin: auto;
+        font-size: 18px;
+    }

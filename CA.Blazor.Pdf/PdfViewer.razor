@@ -1,14 +1,14 @@
 ﻿<div style="width: @Width;">
     @if (!string.IsNullOrEmpty(Base64Data) && string.IsNullOrEmpty(Errors))
     {
-        @*<div>@Pages</div>*@
-            <canvas id="pdf-canvas" style="margin: auto; padding: 0;
-    margin: auto;
-    display: block;
-border: 1px black solid"></canvas>
+        <canvas id="pdf-canvas"></canvas>
         @if(Pages > 1)
         {
-            <p style="text-align: center;">@ActualPage / @Pages</p>
+            <div class="pagination">
+                <i class="arrow left" @onclick="(() => ChangePage(ActualPage - 1))"></i>
+                <p>@ActualPage / @Pages</p>
+                <i class="arrow right" @onclick="(() => ChangePage(ActualPage + 1))"></i>
+            </div>
         }
     }
     else
