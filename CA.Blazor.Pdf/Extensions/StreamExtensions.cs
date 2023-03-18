@@ -13,18 +13,23 @@ public static class StreamExtensions
         {
             return Convert.ToBase64String(memoryStream.ToArray());
         }
-
-        var bytes = new Byte[(int)stream.Length];
-
-        stream.ReadAsync(bytes, 0, (int)stream.Length);
-
-        stream.DisposeAsync();
-
+        var bytes = new byte[(int)stream.Length];
+        stream.ReadAsync(bytes, 0, bytes.Length);
         return Convert.ToBase64String(bytes);
     }
 
+    /// <summary>
+    /// Allows to convert a Stream object to a MemoryStream
+    /// </summary>
+    /// <param name="stream"></param>
+    /// <returns></returns>
     public static async Task<MemoryStream> ToMemoryStreamAsync(this Stream stream)
     {
+        if(stream is MemoryStream ms)
+        {
+            ms.Position = 0;
+            return ms;
+        }
         var memoryStream = new MemoryStream();
         await stream.CopyToAsync(memoryStream);
         memoryStream.Position = 0;

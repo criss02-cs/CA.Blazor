@@ -36,5 +36,18 @@ namespace CA.Blazor.Pdf.Extensions
             }
             return new MemoryStream();
         }
+
+        public static Int32 ToInt32(this string str)
+        {
+            int result;
+            if(int.TryParse(str, out result))
+            {
+                return result;
+            }
+            else
+            {
+                return Int32.MinValue;
+            }
+        }
     }
 }

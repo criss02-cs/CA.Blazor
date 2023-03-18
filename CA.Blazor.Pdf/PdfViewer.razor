@@ -6,7 +6,10 @@
         {
             <div class="pagination">
                 <i class="arrow left" @onclick="(() => ChangePage(ActualPage - 1))"></i>
-                <p>@ActualPage / @Pages</p>
+                <p>
+                    <input type="number" value="@ActualPage" @oninput="@UpdatePage" @onkeydown="@Enter" id="actualPage"/> 
+                    / @Pages
+                </p>
                 <i class="arrow right" @onclick="(() => ChangePage(ActualPage + 1))"></i>
             </div>
         }

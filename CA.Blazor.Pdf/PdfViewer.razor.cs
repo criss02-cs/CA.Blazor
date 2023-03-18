@@ -1,6 +1,7 @@
 using CA.Blazor.Pdf.Extensions;
 using CA.Blazor.Pdf.Helpers;
 using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.Web;
 using Microsoft.JSInterop;
 
 namespace CA.Blazor.Pdf
@@ -11,8 +12,6 @@ namespace CA.Blazor.Pdf
         public string? Base64Data { get; set; } = string.Empty;
         [Parameter]
         public string? Width { get; set; } // 200px o 20%
-        [Parameter]
-        public string? Height { get; set; } // 200px o 20%
 
         private int ActualPage { get; set; } = 0;
         private int Pages { get; set; } = 0; // metto a 0 perché può capitare il file sbagliato 
@@ -36,11 +35,11 @@ namespace CA.Blazor.Pdf
                     }
                     // Ora controllo se il file è effettivamente un pdf
                     var mimeType = AttachmentType.GetMimeType(Base64Data);
-                    //Console.WriteLine(mimeType.MimeType + " " + mimeType.Extension);
                     if (mimeType is not null && !mimeType.Extension.Equals(".pdf"))
                     {
                         throw new InvalidOperationException("Il file selezionato non è un pdf");
                     }
+                    Errors = string.Empty;
                     Pages = await PdfJsInterop.GetNumPages(Base64Data);
                     if(Pages > 0)
                     {
@@ -72,6 +71,24 @@ namespace CA.Blazor.Pdf
                 var canvas = await PdfJsInterop.GetElementById("pdf-canvas");
                 ActualPage = page;
                 await RenderPage(page, canvas, 0.8);
+            }
+        }
+
+        private void UpdatePage(ChangeEventArgs e)
+        {
+            var newValue = (e.Value as string).ToInt32(); 
+            if(newValue > 0) 
+            { 
+                ActualPage = newValue;
+            }
+        }
+
+        private async Task Enter(KeyboardEventArgs e)
+        {
+            if(e.Code == "Enter" || e.Code == "NumpadEnter")
+            {
+                var canvas = await PdfJsInterop.GetElementById("pdf-canvas");
+                await RenderPage(ActualPage, canvas, 0.8);
             }
         }
     }
