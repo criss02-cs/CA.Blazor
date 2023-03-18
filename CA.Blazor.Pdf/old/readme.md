@@ -2,6 +2,8 @@
 
 CA.Blazor.Pdf is a library that allows to show pdf in your blazor website
 
+**This readme is for lower versions of 1.1.0, for higher version you have to read this [documentation](https://github.com/criss02-cs/CA.Blazor/tree/master/CA.Blazor.Pdf)**
+
 ## Usage
 First of all you have to insert library using:
 ```C#
