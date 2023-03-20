@@ -1,4 +1,4 @@
-# Blazor PDFViewer
+﻿# Blazor PDFViewer
 
 CA.Blazor.Pdf is a library that allows to show pdf in your blazor website
 
@@ -28,6 +28,37 @@ builder.Services.AddCaBlazorPdf(); // add this line
 
 await builder.Build().RunAsync();
 ```
+
+In your index.html you have to import pdf.js library from this library
+```HTML
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>CA.Blazor</title>
+    <base href="/" />
+    <link href="css/bootstrap/bootstrap.min.css" rel="stylesheet" />
+    <link href="css/app.css" rel="stylesheet" />
+    <link href="CA.Blazor.Client.styles.css" rel="stylesheet" />
+</head>
+
+<body>
+    <div id="app">Loading...</div>
+
+    <div id="blazor-error-ui">
+        An unhandled error has occurred.
+        <a href="" class="reload">Reload</a>
+        <a class="dismiss">🗙</a>
+    </div>
+    <script src="_framework/blazor.webassembly.js"></script>
+    <script src="./_content/CA.Blazor.Pdf/js/lib/pdfjs/build/pdf.js"></script><!-- Add this line -->
+</body>
+
+</html>
+```
+
 Now you can use CA.Blazor.PdfViewer in your project
 
 First of all you have to insert library using:
